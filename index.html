@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="graph.css">
+    <script src="http://rawgit.com/GordonSmith/github/GH-88-BUILD/dist/github.bundle.min.js"></script>
+    <script src="http://viz.hpccsystems.com/v1.10.0-rc7/dist-amd/hpcc-viz.js"></script>
+    <script src="http://viz.hpccsystems.com/v1.10.0-rc7/dist-amd/hpcc-bundles.js"></script>
+    <script>
+        require.config({
+            paths: {
+                "src": "http://viz.hpccsystems.com/v1.10.0-rc7/dist-amd",
+                "font-awesome": "http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min"
+            }
+        });
+    </script>
+</head>
+<body onresize="doResize();">
+    <div id="main" style="width:100%; height:100vh; margin-top:0px; padding:8px; overflow:hidden">
+    </div>
+    <script>
+        var app;
+        require(["d3", "./main"], function (d3, MainApp) {
+            app = new MainApp()
+                .target("main")
+                .render()
+            ;
+            doResize();
+        });
+
+        function doResize() {
+            if (app) {
+                app.doResize(document.getElementById("main"));
+            }
+        }
+    </script>
+</body>
+</html>
